@@ -1,0 +1,59 @@
+server:
+  port: 7777
+  servlet:
+    context-path: /
+
+
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath*:mapper/**/*.xml
+  typeAliasesPackage: com.example.making.modules.*.entity
+  global-config:
+    db-config:
+      id-type: AUTO
+      field-strategy: NOT_NULL
+      db-column-underline: true
+      refresh-mapper: true
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    call-setters-on-nulls: true
+    jdbc-type-for-null: 'null'
+
+spring:
+  redis:
+    open: true
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 6000ms
+    lettuce:
+      pool:
+        max-active: 1000
+        max-wait: -1ms
+        max-idle: 10
+        min-idle: 5
+  datasource:  # 124.221.255.113 公司服务  192.168.7.252 本地服务
+    url: jdbc:mysql://192.168.7.252:3306/guard?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true&serverTimezone=Hongkong&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-test-query: SELECT 1 FROM DUAL
+      connection-timeout: 30000
+      maximum-pool-size: 100
+      max-lifetime: 1800000
+      minimum-idle: 5
+
+      #原来的公钥
+      #publicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAolLJA4rPUBtMXN/h1OXRxrkO/IMPz24FDPTWV/ImEXchJ+MH5LAZXwrIeQ8dIUbHVp662iDihncrTmhV563aRCr5e2DUW1jFivqlXW9+6+kY/Qq5rGHXXeyL7/Wh+5oBljXJPosr/cY2NOHnBDPdWMFdBiPUT4hRliwNa7fNc+Er7Q0eylbuiM29o6tI0ZD1eqm+AymjtniNMWZ8YkIuLC/+PIqCqpGUvTb3FfpqD12XvE1Mxz/gG2B8sYlF3zhGODpArBRAZpCwXPZ2tWG8lqBZye+bSzYGrBPz9RXe8IdtB/pUC0R6qEbObm0xFUdfHlTJEsNwhtvgvR4Wv5uWTwIDAQAB
+
+sign:
+  publicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA8r5qiaSnJuqzBEI6pJ6NMqO2XKgIN1z8iUkWLO4T0/gCW5CKyOWXitEvOMsIb7xHo97dXhJHdQjPKhow0yANJGIPFR+KWuqrS/EuqH11F6Aji//beIuoRiurvKUDq6s1nGhw2nV9L5fy1p8FVokkk6y911WORMnUkaQrdEnWoW42yztu2vPgQdp2LDRsPFJTDXMXVH2AUVWgNwX4hIngilzP1RcRDVfEEryMGSBFFUTQfsUX3L8nmPkdAZsTaPcnIDIKOOrz5cwSc/6N+siDhyYgw1qF0NimC7CjQEJn0HlWXtKWN9Q0tiHMxE0biNMny486mhCOz7i+OYo8IkYnLwIDAQAB
+  privateKey: MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCiUskDis9QG0xc3+HU5dHGuQ78gw/PbgUM9NZX8iYRdyEn4wfksBlfCsh5Dx0hRsdWnrraIOKGdytOaFXnrdpEKvl7YNRbWMWK+qVdb37r6Rj9CrmsYddd7Ivv9aH7mgGWNck+iyv9xjY04ecEM91YwV0GI9RPiFGWLA1rt81z4SvtDR7KVu6Izb2jq0jRkPV6qb4DKaO2eI0xZnxiQi4sL/48ioKqkZS9NvcV+moPXZe8TUzHP+AbYHyxiUXfOEY4OkCsFEBmkLBc9na1YbyWoFnJ75tLNgasE/P1Fd7wh20H+lQLRHqoRs5ubTEVR18eVMkSw3CG2+C9Hha/m5ZPAgMBAAECggEASfpIumCM0wld6AXwukJzNIoqllJ05ihSDPGYrkQhrVwJtE/3zPWk2nfjnaiRshS7zHJS3g6WrompJvbOD+Rf0Sl0whIDNg5jGU/aBZdG1OVLCifVLwb4TEn+DMJ5rF0n0/l3WhW7WtD262r5CiVI/6ZAawfxPr310OcKxsjhzalbrjRXqU7QZhhS0GNGDCE/oS+OLVDi2wiTG+TySB1/9uBqObhAW3Arm8HXNbT40Kud4kDMhisD6NzwCXXvlL38/OahqOwnIVgilE6BsPDIcySEAJeBNPWoCGHdMWNFcHTvJkI39vDAzYAbIBFEEiNRiqNRjtewwHQFiMPbxUDPAQKBgQDQIOMOIw6ImyW8mnCR+/VMy9PHayW0XvAXnj/ZFGBLulsaygAbDIhU3Vse7pQOOm/zhhO0XP3gr3RBIenx6YWV72wrrOegK/CWVI+tBVn/q0ocDv0bDBmjWSSlWGlLbnVagdf+avSgrj2DHGMZXGG+S+KeoRyF3jCJaiEpBnpfrwKBgQDHqMhoX14epMvSvw4FYnQY1wYajOpSu4K3KAvyN6JAnr2ZnYMEDwhDcMzEpmvSk/2HBRtmx8n8O/Oy6wHRR5+uKxV5WbQMR6jhDHjWptrqp6+X0dGs8vm32e39o6E8+iXSy+zMPVPL3djPnyQlv+Vs3WAP47RtlsQuG5trd9A7YQKBgCYVXna/w3ELsqQIPoD38bLTuTTMTmHq3VP1CQnXyKcSuoj0XYCVkny05G+MiFryJnoRFpnySiJK+KLSadRyPpdo8Aot4VRVtfhMEN5AFG/MEAuCUp4YYLibHzGCNAIxfBfLmpJbT9f3Chprn1aMqPYBPL56DJYSSh9a5CZ1oP7RAoGASww8WE8Ql8AmBQ9fe9KoBPY+CxjQs0xcM/BPnTogON3yMp2sM4ha+M6biYdsm/iYoXnf9OBAIhl+3s/LHRkpAlSbe8OmE7+T0RPZEAYj33QsYoqxn6qtBthZxq8M2ljEgtm4JoUezFCVQGV3NuFMoYEMrKxQk6jKEPK7lsewc8ECgYAXp8l5FtKSH9cuAPhTItQ8swdqsDsr9gEVwLUDiD9+ApZitHW8JhPLfdhdlWMELKomWVGo8vIW9RvJnop59Km9/JcIH/A8eAhkGkfL7Bc0QVyXXOIHG1GIo3JILxsym41K55pAJz1ASuYOaAI7Yk7TwJSVbeBh0QfAX1/YD3dWvA==
+
+des:
+  key: aaavvasssaasddscas
